@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ugofunmi Baderin — Portfolio | Radiance Plus Educational Resource</title>
+<meta name="description" content="Ugofunmi Baderin — Edu influencer and social &amp; emotional intelligence expert at Radiance Plus Educational Resource.">
+<link rel="icon" type="image/png" href="radianceplus-logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* This page overrides the shared palette with its own warm editorial
+     theme (cream / near-black / amber) inspired by goldwealthspeaks.com,
+     while reusing the shared layout mechanics (nav, footer, reviews, form). */
+  :root{
+    --violet:#C27A32;
+    --violet-soft:#E3AE72;
+    --coral:#B5651D;
+    --ink:#1C1812;
+    --plum:#2B241B;
+  }
+
+  /* Nav stays light at all times on this page (no transparent-over-dark state) */
+  header, header.scrolled{
+    background:var(--paper);
+    box-shadow:0 1px 0 var(--line);
+    padding:14px 0;
+  }
+  header .logo, header.scrolled .logo{ color:var(--ink); }
+  nav.links a{ color:var(--text-soft); }
+  header .burger span, header.scrolled .burger span{ background:var(--ink); }
+  .nav-cta, header.scrolled .nav-cta{ background:var(--ink) !important; color:var(--paper) !important; }
+
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.85rem;
+    color:var(--text-soft);
+    margin-bottom:8px;
+  }
+  .back-link:hover{ color:var(--violet); }
+
+  /* ---------- HERO ---------- */
+  .p-hero{
+    background:var(--cream);
+    padding:150px 0 60px;
+  }
+  .p-hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+    margin-top:28px;
+  }
+  .p-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:0.78rem;
+    letter-spacing:0.09em;
+    font-weight:600;
+    color:var(--violet);
+    margin-bottom:22px;
+  }
+  .p-eyebrow .dash{ width:26px; height:1.5px; background:var(--violet); flex-shrink:0; }
+  .p-headline{
+    font-size:clamp(2.2rem, 4.4vw, 3.4rem);
+    color:var(--ink);
+    line-height:1.1;
+    margin-bottom:22px;
+  }
+  .p-headline em{ font-style:italic; color:var(--violet); font-weight:450; }
+  .p-intro{
+    font-size:1.06rem;
+    color:var(--text-soft);
+    max-width:500px;
+    margin-bottom:32px;
+  }
+  .p-intro .p-name{ color:var(--ink); font-weight:600; }
+  .p-intro .p-creds{ color:var(--violet); font-weight:600; }
+  .p-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-pill-dark{
+    background:var(--ink);
+    color:var(--cream);
+    padding:15px 28px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.92rem;
+    display:inline-block;
+    transition:transform 0.25s ease;
+  }
+  .btn-pill-dark:hover{ transform:translateY(-2px); }
+  .btn-pill-outline{
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:15px 28px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.92rem;
+    display:inline-block;
+    transition:border-color 0.25s ease, color 0.25s ease;
+  }
+  .btn-pill-outline:hover{ border-color:var(--violet); color:var(--violet); }
+
+  .p-hero-photo{ position:relative; max-width:380px; margin:0 auto; }
+  .p-photo-frame{
+    position:relative;
+    border-radius:26px;
+    overflow:hidden;
+    border:9px solid var(--paper);
+    box-shadow:0 0 0 1.5px var(--line), 0 30px 60px rgba(28,24,18,0.18);
+  }
+  .p-photo-frame::before{
+    content:"";
+    position:absolute;
+    inset:-14px;
+    border:1.5px solid var(--violet-soft);
+    border-radius:32px;
+    z-index:-1;
+  }
+  .p-photo-frame img{
+    width:100%; display:block;
+    aspect-ratio:3/3.6;
+    object-fit:cover;
+    object-position:center top;
+  }
+  .p-ribbon{
+    position:absolute;
+    top:26px; right:-38px;
+    background:var(--violet);
+    color:var(--paper);
+    font-size:0.7rem;
+    font-weight:700;
+    letter-spacing:0.05em;
+    padding:7px 46px;
+    transform:rotate(34deg);
+    box-shadow:0 6px 14px rgba(0,0,0,0.18);
+  }
+  .p-float-card{
+    position:absolute;
+    bottom:-24px; right:-14px;
+    background:var(--paper);
+    border-radius:16px;
+    padding:13px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 18px 40px rgba(28,24,18,0.16);
+    min-width:210px;
+  }
+  .p-float-icon{
+    width:36px; height:36px;
+    border-radius:10px;
+    background:var(--cream-dim);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--violet);
+    flex-shrink:0;
+  }
+  .p-float-icon svg{ width:18px; height:18px; }
+  .p-float-title{ font-family:'Fraunces', serif; font-size:0.92rem; color:var(--ink); }
+  .p-float-sub{ font-size:0.76rem; color:var(--violet); }
+
+  @media (max-width: 900px){
+    .p-hero-grid{ grid-template-columns:1fr; text-align:center; }
+    .p-eyebrow{ justify-content:center; }
+    .p-intro{ margin-left:auto; margin-right:auto; }
+    .p-ctas{ justify-content:center; }
+    .p-hero-photo{ margin-top:44px; margin-bottom:34px; }
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .p-marquee{
+    background:var(--ink);
+    overflow:hidden;
+    padding:20px 0;
+  }
+  .p-marquee-track{
+    display:flex;
+    gap:20px;
+    white-space:nowrap;
+    width:max-content;
+    animation:pMarquee 28s linear infinite;
+  }
+  .p-marquee-track span{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:rgba(251,246,236,0.85);
+    font-size:1.08rem;
+  }
+  .p-marquee-track span.dot{
+    color:var(--violet);
+    font-style:normal;
+    font-size:0.65rem;
+  }
+  @keyframes pMarquee{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){ .p-marquee-track{ animation:none; } }
+
+  /* ---------- ABOUT ---------- */
+  .p-about{ background:var(--paper); padding:88px 0 10px; }
+  .p-about-grid{
+    display:grid;
+    grid-template-columns:0.8fr 1.2fr;
+    gap:50px;
+    margin-bottom:54px;
+  }
+  .p-eyebrow-sm{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:0.76rem;
+    letter-spacing:0.09em;
+    font-weight:600;
+    color:var(--violet);
+    margin-bottom:16px;
+  }
+  .p-eyebrow-sm .dash{ width:22px; height:1.5px; background:var(--violet); }
+  .p-about-heading{
+    font-size:clamp(1.6rem, 2.8vw, 2.2rem);
+    color:var(--ink);
+    line-height:1.25;
+  }
+  .p-about-heading em{ font-style:italic; color:var(--violet); }
+  .p-about-copy p{
+    font-size:1.06rem;
+    color:var(--text-soft);
+    line-height:1.7;
+  }
+  .drop-cap{
+    font-family:'Fraunces', serif;
+    font-size:3.1rem;
+    color:var(--violet);
+    float:left;
+    line-height:0.78;
+    margin:8px 9px 0 0;
+    font-weight:500;
+  }
+  .p-about-grid2{
+    display:grid;
+    grid-template-columns:0.8fr 1.2fr;
+    gap:50px;
+    align-items:start;
+    padding-bottom:70px;
+  }
+  .p-about-photo{ border-radius:18px; overflow:hidden; }
+  .p-about-photo img{
+    width:100%; display:block;
+    aspect-ratio:4/3.3;
+    object-fit:cover;
+    object-position:center 15%;
+  }
+  .p-chip-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .p-chip{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px;
+    font-size:0.92rem;
+    color:var(--text-dark);
+    font-weight:500;
+  }
+  .p-chip-icon{ width:28px; height:28px; flex-shrink:0; color:var(--violet); }
+  .p-chip-icon svg{ width:100%; height:100%; }
+
+  @media (max-width: 900px){
+    .p-about-grid, .p-about-grid2{ grid-template-columns:1fr; }
+    .p-about-grid{ text-align:center; }
+    .p-eyebrow-sm{ justify-content:center; }
+  }
+  @media (max-width: 560px){
+    .p-chip-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- CORPORATE SPEAKING ---------- */
+  .p-speak{ background:var(--ink); padding:90px 0; }
+  .p-speak-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:56px;
+    align-items:center;
+  }
+  .p-speak-photo{ position:relative; max-width:320px; margin:0 auto; }
+  .p-speak-frame{
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 30px 60px rgba(0,0,0,0.4);
+  }
+  .p-speak-frame img{
+    width:100%; display:block;
+    aspect-ratio:240/415;
+    object-fit:cover;
+    object-position:center top;
+  }
+  .p-speak-quote{
+    position:absolute;
+    bottom:-20px; left:-16px;
+    background:var(--violet);
+    color:var(--ink);
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    line-height:1.25;
+    padding:16px 20px;
+    border-radius:12px;
+    box-shadow:0 14px 30px rgba(0,0,0,0.35);
+    transform:rotate(-2deg);
+  }
+  .p-eyebrow-sm.light{ color:var(--violet-soft); }
+  .p-eyebrow-sm.light .dash{ background:var(--violet-soft); }
+  .p-speak-heading{
+    font-size:clamp(1.7rem, 3vw, 2.3rem);
+    color:var(--paper);
+    line-height:1.25;
+    margin-bottom:18px;
+  }
+  .p-speak-text{
+    color:rgba(251,246,236,0.75);
+    font-size:1.02rem;
+    margin-bottom:28px;
+    max-width:480px;
+  }
+  .p-speak-list .eyebrow-tiny{
+    font-size:0.74rem;
+    letter-spacing:0.08em;
+    color:var(--violet-soft);
+    font-weight:700;
+    margin-bottom:14px;
+  }
+  .p-speak-list ul{
+    list-style:none;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px 20px;
+    margin-bottom:32px;
+  }
+  .p-speak-list li{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:0.93rem;
+    color:rgba(251,246,236,0.88);
+  }
+  .p-speak-list li::before{
+    content:"\2713";
+    width:20px; height:20px;
+    border-radius:50%;
+    background:var(--violet);
+    color:var(--ink);
+    font-size:0.66rem;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .p-speak-tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:32px;
+  }
+  .p-speak-tags span{
+    border:1px solid rgba(251,246,236,0.25);
+    color:rgba(251,246,236,0.85);
+    padding:7px 16px;
+    border-radius:999px;
+    font-size:0.8rem;
+  }
+  .btn-pill-dark.on-dark{ background:var(--violet); color:var(--ink); }
+
+  @media (max-width: 900px){
+    .p-speak-grid{ grid-template-columns:1fr; text-align:center; }
+    .p-speak-photo{ margin-bottom:54px; }
+    .p-speak-quote{ left:50%; transform:translateX(-50%) rotate(-2deg); }
+    .p-speak-text{ margin-left:auto; margin-right:auto; }
+    .p-speak-list ul{ max-width:300px; margin:0 auto 32px; text-align:left; }
+    .p-speak-tags{ justify-content:center; }
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="logo"><img src="radianceplus-logo-mark.png" alt="" class="logo-mark">Radiance Plus</a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="#about">Portfolio</a>
+      <a href="#speaking">Speaking</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact" class="nav-cta">Book a Session</a>
+    </nav>
+    <button class="burger" id="burgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" id="closeMenu" aria-label="Close menu">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="#about">Portfolio</a>
+  <a href="#speaking">Speaking</a>
+  <a href="#credentials">Credentials</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#contact" class="nav-cta">Book a Session</a>
+</div>
+
+<main id="top">
+
+  <!-- PORTFOLIO HERO -->
+  <section class="p-hero" id="about">
+    <div class="wrap">
+      <a href="index.html" class="back-link">&larr; Radiance Plus Educational Resource</a>
+      <div class="p-hero-grid">
+        <div class="p-hero-text">
+          <div class="p-eyebrow"><span class="dash"></span>EDU INFLUENCER &middot; SEL EXPERT &middot; MENTOR &middot; SPEAKER</div>
+          <h1 class="p-headline">Where empathy meets the classroom — and <em>growth</em> feels possible.</h1>
+          <p class="p-intro"><span class="p-name">Ugofunmi Baderin</span> <span class="p-creds">B.Sc., PGD Ed.</span> is an edu influencer, social &amp; emotional intelligence expert and mentor helping teachers lead with more presence — from first-year teachers finding their footing to school leaders shaping a culture worth showing up for.</p>
+          <div class="p-ctas">
+            <a href="#contact" class="btn-pill-dark">Book Ugofunmi to Speak</a>
+            <a href="#credentials" class="btn-pill-outline">View Credentials</a>
+          </div>
+        </div>
+        <div class="p-hero-photo">
+          <div class="p-photo-frame">
+            <img src="ugofunm-baderin.jpg" alt="Ugofunmi Baderin">
+            <div class="p-ribbon">SEL EXPERT</div>
+          </div>
+          <a href="#credentials" class="p-float-card">
+            <div class="p-float-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4.2"/><path d="M8.5 11.5L7 20l5-2.5 5 2.5-1.5-8.5"/></svg>
+            </div>
+            <div>
+              <div class="p-float-title">SEL Ambassador</div>
+              <div class="p-float-sub">Mark Willows Foundation &rarr;</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="p-marquee">
+    <div class="p-marquee-track">
+      <span>Empathy</span><span class="dot">&#9670;</span>
+      <span>Classroom Culture</span><span class="dot">&#9670;</span>
+      <span>Leadership</span><span class="dot">&#9670;</span>
+      <span>Mentorship</span><span class="dot">&#9670;</span>
+      <span>Digital Learning</span><span class="dot">&#9670;</span>
+      <span>Storytelling</span><span class="dot">&#9670;</span>
+      <span>Growth</span><span class="dot">&#9670;</span>
+      <span>Empathy</span><span class="dot">&#9670;</span>
+      <span>Classroom Culture</span><span class="dot">&#9670;</span>
+      <span>Leadership</span><span class="dot">&#9670;</span>
+      <span>Mentorship</span><span class="dot">&#9670;</span>
+      <span>Digital Learning</span><span class="dot">&#9670;</span>
+      <span>Storytelling</span><span class="dot">&#9670;</span>
+      <span>Growth</span><span class="dot">&#9670;</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="p-about">
+    <div class="wrap p-about-grid">
+      <div>
+        <div class="p-eyebrow-sm"><span class="dash"></span>ABOUT UGOFUNMI</div>
+        <h2 class="p-about-heading">Classrooms, confidence &amp; the <em>everyday</em> work of showing up.</h2>
+      </div>
+      <div class="p-about-copy">
+        <p><span class="drop-cap">B</span>y day, Ugofunmi works in the language of classrooms and coaching — translating emotional intelligence into something a teacher can actually use on a Monday morning. Beyond the workshops, she's a mentor and content creator at heart: someone who believes that how an educator shows up changes what a classroom becomes.</p>
+      </div>
+    </div>
+    <div class="wrap p-about-grid2">
+      <div class="p-about-photo">
+        <img src="ugofunm-baderin.jpg" alt="Ugofunmi Baderin">
+      </div>
+      <div class="p-chip-grid">
+        <div class="p-chip">
+          <span class="p-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.58 7-12a7 7 0 10-14 0c0 4.42 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg></span>
+          Based in Abuja, Nigeria
+        </div>
+        <div class="p-chip">
+          <span class="p-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4.2"/><path d="M8.5 11.5L7 20l5-2.5 5 2.5-1.5-8.5"/></svg></span>
+          SEL Ambassador
+        </div>
+        <div class="p-chip">
+          <span class="p-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="11" rx="1.5"/><path d="M2 19h20"/></svg></span>
+          Google Educator
+        </div>
+        <div class="p-chip">
+          <span class="p-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l1-4.2L15.5 5.3a1.8 1.8 0 012.5 0l.7.7a1.8 1.8 0 010 2.5L8.2 19l-4.2 1z"/></svg></span>
+          Content Creator
+        </div>
+        <div class="p-chip">
+          <span class="p-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0014 0M12 18v3"/></svg></span>
+          Speaker
+        </div>
+        <div class="p-chip">
+          <span class="p-chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8.5" cy="8" r="2.8"/><circle cx="16" cy="9" r="2.3"/><path d="M3 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5M14 20c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg></span>
+          Mentor
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORPORATE SPEAKING -->
+  <section class="p-speak" id="speaking">
+    <div class="wrap p-speak-grid">
+      <div class="p-speak-photo">
+        <div class="p-speak-frame">
+          <img src="ugofunmi-speaking.jpg" alt="Ugofunmi Baderin speaking at a corporate event">
+        </div>
+        <div class="p-speak-quote">Engaging.<br>Insightful.<br>Impactful.</div>
+      </div>
+      <div class="p-speak-content">
+        <div class="p-eyebrow-sm light"><span class="dash"></span>CORPORATE SPEAKING</div>
+        <h2 class="p-speak-heading">Book her for your corporate event — or let her anchor it.</h2>
+        <p class="p-speak-text">As a trained TEDx speaker, Ugofunmi brings a prestigious touch to conferences, retreats and corporate gatherings — equal parts educator, mentor and change agent. Let's make your next corporate event unforgettable.</p>
+        <div class="p-speak-list">
+          <div class="eyebrow-tiny">IDEAL FOR</div>
+          <ul>
+            <li>Conferences &amp; Seminars</li>
+            <li>Leadership &amp; Team Retreats</li>
+            <li>Training &amp; Capacity Building</li>
+            <li>Panel Discussions</li>
+            <li>Corporate Social Impact Events</li>
+            <li>MC / Event Anchoring</li>
+          </ul>
+        </div>
+        <div class="p-speak-tags">
+          <span>Educator</span><span>Speaker</span><span>Mentor</span><span>Change Agent</span>
+        </div>
+        <a href="#contact" class="btn-pill-dark on-dark">Book for Your Event</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section class="about" id="credentials">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Background</div>
+        <h2>Education &amp; Recognition</h2>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card">
+          <h3><span class="cat-mark">&#9670;</span>Education</h3>
+          <ul>
+            <li>B.Sc. Computer Science — Lagos State University, 2011</li>
+            <li>PGD Education — National Teachers Institute, Kaduna, 2018</li>
+            <li>PGD Theology — Redeemed College of Mission, 2015</li>
+            <li>PG Cert Online Learning &amp; Teaching — King's College London, 2026</li>
+            <li>Leadership Certificate — Team Nehemiah Leadership Institute, 2023</li>
+          </ul>
+        </div>
+        <div class="cat-card">
+          <h3><span class="cat-mark">&#9670;</span>Affiliations &amp; Recognition</h3>
+          <ul>
+            <li>Social &amp; Emotional Learning Ambassador — Mark Willows Foundation International</li>
+            <li>FCT Lead, Beyond Success Leadership Roundtables — Equip Nigeria</li>
+            <li>Google Educator, Level 1</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT SHE DOES -->
+  <section class="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">What She Does</div>
+        <h2>Bringing emotional intelligence into everyday teaching.</h2>
+        <p>Ugofunmi's work with Radiance Plus focuses on the human side of education — how educators show up, connect, and lead.</p>
+      </div>
+      <div class="service-list">
+        <div class="service-item">
+          <h3>SEL-Focused Teacher Coaching</h3>
+          <p>One-on-one coaching that helps educators build self-awareness, regulate stress, and bring more presence into the classroom.</p>
+        </div>
+        <div class="service-item">
+          <h3>Content for Educators</h3>
+          <p>Ongoing content and commentary that helps teachers see themselves — and their growth — reflected honestly online.</p>
+        </div>
+        <div class="service-item">
+          <h3>Classroom Culture Workshops</h3>
+          <p>Practical sessions on building classrooms where students feel safe, seen, and able to engage.</p>
+        </div>
+        <div class="service-item">
+          <h3>Teens &amp; Children Mentoring</h3>
+          <p>Structured mentoring that helps young people build confidence, character and emotional vocabulary.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">In Their Words</div>
+        <h2>Educators and parents on working with Ugofunmi.</h2>
+      </div>
+      <div class="review-track">
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">Ugofunmi's session on emotional intelligence in the classroom was the most useful training I've sat through in years — practical, honest, and immediately usable.</p>
+          <div class="review-who">
+            <div class="review-avatar">RM</div>
+            <div><div class="name">Rita Musa</div><div class="role">Primary School Teacher</div></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">My son's confidence changed after a few months in the mentoring programme. He talks about school differently now.</p>
+          <div class="review-who">
+            <div class="review-avatar">HB</div>
+            <div><div class="name">Halima Bello</div><div class="role">Parent</div></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">She has a way of naming things I felt but never had language for as a teacher. My relationship with my students has genuinely shifted.</p>
+          <div class="review-who">
+            <div class="review-avatar">JO</div>
+            <div><div class="name">Joy Okonkwo</div><div class="role">Junior Secondary Teacher</div></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">I followed her content for months before booking a session, and the real thing was even more grounded and useful than I expected.</p>
+          <div class="review-who">
+            <div class="review-avatar">DK</div>
+            <div><div class="name">David Kimani</div><div class="role">Educator, International School</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-copy">
+        <div class="eyebrow">Work With Ugofunmi</div>
+        <h2>Bring her into your school or classroom.</h2>
+        <p>Available for coaching, workshops, and speaking engagements through Radiance Plus Educational Resource.</p>
+        <div class="contact-detail">
+          <div><span class="tag">Email</span> radianceplus.edu@gmail.com</div>
+          <div><span class="tag">Phone</span> 0802 951 3764 | 0813 829 2207</div>
+          <div><span class="tag">WhatsApp</span> <a href="https://wa.me/2348029513764?text=Hi%2C%20I%27d%20like%20to%20book%20Ugofunmi%20Baderin." target="_blank" rel="noopener">Chat with us directly</a></div>
+          <div><span class="tag">Instagram</span> <a href="https://instagram.com/ugofunmi1" target="_blank" rel="noopener">@ugofunmi1</a></div>
+          <div><span class="tag">Based</span> No. 1, Peshe Street, Karu Village, Abuja</div>
+        </div>
+      </div>
+      <form id="contactForm">
+        <div>
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required>
+        </div>
+        <div>
+          <label for="interest">I'm interested in</label>
+          <select id="interest" name="interest">
+            <option>Coaching Session</option>
+            <option>School Workshop</option>
+            <option>Speaking Engagement</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us a bit about what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo"><img src="radianceplus-logo-mark.png" alt="">Radiance Plus</div>
+        <div>Portfolio of Ugofunmi Baderin — part of Radiance Plus Educational Resource.</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="#about">Portfolio</a>
+        <a href="#speaking">Speaking</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://facebook.com/RadiancePlusEducationalResource" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.5c0-.9.25-1.5 1.55-1.5H16.5V4.35C16.2 4.3 15.2 4.2 14 4.2c-2.4 0-4 1.45-4 4.1V10.5H7.5v3H10V21h3.5z"/></svg>
+        </a>
+        <a href="https://instagram.com/ugofunmi1" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="0.8" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Radiance Plus Educational Resource. All rights reserved.</span>
+      <span>Designed for educators, everywhere — by Tahir Adeleye.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  const onScroll = () => {
+    if(window.scrollY > 40){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  };
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+  const burgerBtn = document.getElementById('burgerBtn');
+  const closeMenu = document.getElementById('closeMenu');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  const form = document.getElementById('contactForm');
+  const WHATSAPP_NUMBER = '2348029513764'; // 0802 951 3764
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const interest = document.getElementById('interest').value;
+    const message = document.getElementById('message').value.trim();
+
+    let text = `Hi, my name is ${name}. I'd like to book Ugofunmi Baderin.`;
+    text += `\nEmail: ${email}`;
+    text += `\nInterested in: ${interest}`;
+    if(message){ text += `\nMessage: ${message}`; }
+
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+
+    form.innerHTML = '<p style="font-family:\'Fraunces\',serif; font-size:1.3rem; color:var(--ink);">Opening WhatsApp...<br><span style="font-family:\'Work Sans\',sans-serif; font-size:0.95rem; color:var(--text-soft);">If it didn\'t open automatically, message us directly at 0802 951 3764.</span></p>';
+  });
+</script>
+
+</body>
+</html>
