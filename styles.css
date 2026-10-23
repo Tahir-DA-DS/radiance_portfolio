@@ -188,6 +188,58 @@
     z-index:2;
     max-width:680px;
   }
+
+  /* Align hero text with the logo / nav edge instead of centring it */
+  .hero-inner{
+    margin-left:max(32px, calc((100vw - 1180px) / 2));
+    margin-right:auto;
+    padding:0;
+  }
+
+  /* Photo on the right, fading into the dark background */
+  .hero-photo{
+    position:absolute;
+    top:0; right:0; bottom:0;
+    width:46%;
+    z-index:1;
+    pointer-events:none;
+    -webkit-mask-image:linear-gradient(to right, transparent 0%, #000 45%);
+            mask-image:linear-gradient(to right, transparent 0%, #000 45%);
+  }
+  .hero-photo img{
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:50% 10%;
+    opacity:0.95;
+    filter:brightness(0.85) contrast(1.05);
+  }
+  /* soft purple tint so the cream wall sits inside the brand palette */
+  .hero-photo::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(to right, rgba(25,23,48,0.55) 0%, rgba(44,36,84,0.25) 60%, rgba(44,36,84,0.1) 100%);
+  }
+  .hero::before{ z-index:0; }
+  .hero-strip{ position:relative; z-index:2; }
+
+  @media (max-width: 900px){
+    section.hero{ display:flex; flex-direction:column; padding-bottom:0; }
+    .hero-inner{ margin-left:0; margin-right:0; max-width:none; padding:0 22px; }
+    /* on phones/tablets the photo sits below the content and fades up into it */
+    .hero-photo{
+      position:relative;
+      order:3;
+      width:100%; max-width:460px;
+      height:min(500px, 125vw);
+      margin:28px auto 0;
+      -webkit-mask-image:linear-gradient(to bottom, transparent 0%, #000 38%, #000 88%, transparent 100%), linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+              mask-image:linear-gradient(to bottom, transparent 0%, #000 38%, #000 88%, transparent 100%), linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%);
+      -webkit-mask-composite:source-in;
+              mask-composite:intersect;
+    }
+    .hero-photo img{ object-position:50% 8%; }
+    .hero-photo::after{ background:linear-gradient(to bottom, rgba(25,23,48,0.5), rgba(44,36,84,0.1)); }
+  }
   .hero-eyebrow{
     font-size:0.85rem;
     letter-spacing:0.02em;
